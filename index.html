@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sooraj Deshwal | Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+:root{--bg:#050810;--card:#111827;--text:#fff;--muted:#aab3c5;--cyan:#00eaff;--purple:#7c5cff;--pink:#ff4ecd;--border:rgba(255,255,255,.10)}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(circle at 15% 20%,rgba(0,234,255,.08),transparent 25%),radial-gradient(circle at 85% 20%,rgba(124,92,255,.12),transparent 25%),radial-gradient(circle at 50% 90%,rgba(255,78,205,.06),transparent 25%)}
+.cursor-dot{width:8px;height:8px;position:fixed;background:#fff;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan),0 0 25px var(--purple)}
+.cursor-ring{width:35px;height:35px;position:fixed;border:1px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border .2s}
+.mouse-light{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,234,255,.07),transparent 65%)}
+nav{position:fixed;top:0;left:0;width:100%;height:75px;display:flex;justify-content:space-between;align-items:center;padding:0 7%;background:rgba(5,8,16,.82);backdrop-filter:blur(15px);border-bottom:1px solid var(--border);z-index:1000}
+.logo{font-size:24px;font-weight:bold;color:var(--cyan);text-decoration:none;transition:.3s}
+.logo:hover{transform:scale(1.08);text-shadow:0 0 10px var(--cyan),0 0 25px var(--purple)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:#fff;text-decoration:none;font-size:14px;font-weight:bold;transition:.3s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:2px;background:var(--cyan);transition:.3s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-links a:hover::after{width:100%}
+.hero{min-height:100vh;padding:120px 7% 70px;display:flex;align-items:center;justify-content:space-between;gap:50px}
+.hero-text{max-width:650px}
+.small{color:var(--cyan);font-size:13px;font-weight:bold;letter-spacing:3px}
+.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin:18px 0;letter-spacing:-2px}
+.hero h1 span{background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h2{font-size:27px;margin-bottom:18px}
+.hero-description{color:var(--muted);font-size:17px;line-height:1.8;max-width:600px}
+.buttons{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 23px;border-radius:9px;text-decoration:none;font-weight:bold;position:relative;overflow:hidden;transition:.3s}
+.primary{background:linear-gradient(135deg,var(--purple),#4d8cff);color:#fff}
+.secondary{color:#fff;border:1px solid var(--border);background:rgba(255,255,255,.03)}
+.btn:hover{transform:translateY(-5px) scale(1.03)}
+.primary:hover{box-shadow:0 0 25px rgba(124,92,255,.6)}
+.btn::after{content:"";position:absolute;top:-100%;left:-120%;width:60%;height:300%;background:rgba(255,255,255,.2);transform:rotate(25deg);transition:.6s}
+.btn:hover::after{left:150%}
+.photo-box{position:relative;perspective:1000px}
+.photo-box::before,.photo-box::after{content:"";position:absolute;width:350px;height:430px;border-radius:30px}
+.photo-box::before{top:-15px;left:-15px;border:1px solid rgba(0,234,255,.35);transform:rotate(6deg)}
+.photo-box::after{top:15px;left:15px;border:1px solid rgba(124,92,255,.35);transform:rotate(-6deg)}
+.photo-box img{position:relative;z-index:3;width:330px;height:420px;object-fit:cover;border-radius:25px;border:2px solid var(--purple);box-shadow:0 0 50px rgba(124,92,255,.3);transition:transform .2s,filter .3s}
+.photo-box:hover img{filter:brightness(1.08) saturate(1.15)}
+section{padding:100px 7%;position:relative}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-size:clamp(32px,5vw,45px);margin-top:8px}
+.section-title h2 span{color:var(--cyan)}
+.about{max-width:850px;margin:auto;text-align:center}
+.about p{color:var(--muted);font-size:17px;line-height:1.9}
+.about-card{padding:35px;border:1px solid var(--border);border-radius:20px;background:rgba(255,255,255,.025);box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.skills-section,.education-section{background:rgba(255,255,255,.018);border-top:1px solid var(--border)}
+.skills-section{border-bottom:1px solid var(--border)}
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:auto}
+.skill,.project{border:1px solid var(--border);position:relative;overflow:hidden;transform-style:preserve-3d;transition:border .3s,box-shadow .3s}
+.skill{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));padding:28px;border-radius:18px;min-height:190px}
+.project{background:linear-gradient(145deg,rgba(17,24,39,.95),rgba(10,15,25,.95));border-radius:20px;padding:30px;min-height:270px}
+.skill::before,.project::before{content:"";position:absolute;left:var(--x,50%);top:var(--y,50%);transform:translate(-50%,-50%);opacity:0;transition:.2s;pointer-events:none}
+.skill::before{width:180px;height:180px;background:radial-gradient(circle,rgba(0,234,255,.18),transparent 70%)}
+.project::before{width:220px;height:220px;background:radial-gradient(circle,rgba(124,92,255,.2),transparent 70%)}
+.skill:hover::before,.project:hover::before{opacity:1}
+.skill:hover{border-color:rgba(0,234,255,.45);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.project:hover{border-color:rgba(124,92,255,.6);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.skill-icon{width:50px;height:50px;display:grid;place-items:center;border-radius:12px;background:rgba(124,92,255,.14);color:var(--cyan);font-weight:bold;margin-bottom:18px;font-size:14px}
+.skill h3{margin-bottom:10px;font-size:20px}
+.skill p{color:var(--muted);line-height:1.6;font-size:14px}
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:1100px;margin:auto}
+.project-number{color:var(--cyan);font-size:13px;font-weight:bold;letter-spacing:2px}
+.project h3{font-size:24px;margin:15px 0 12px}
+.project p{color:var(--muted);line-height:1.7}
+.tags{margin-top:20px}
+.tags span{display:inline-block;padding:6px 10px;border:1px solid #344057;border-radius:20px;font-size:11px;color:#ccd3df;margin:3px}
+.timeline{max-width:800px;margin:auto;border-left:2px solid var(--purple);padding-left:30px}
+.edu{position:relative;padding:0 0 40px}
+.edu::before{content:"";position:absolute;width:12px;height:12px;background:var(--cyan);border-radius:50%;left:-37px;top:5px;box-shadow:0 0 15px var(--cyan)}
+.edu h3{color:var(--cyan);margin-bottom:8px}
+.edu p{color:var(--muted)}
+.contact{max-width:900px;margin:auto;text-align:center}
+.contact p{color:var(--muted);margin-bottom:25px;line-height:1.7}
+.contact-info{margin-bottom:28px;line-height:2;color:var(--muted);font-size:15px}
+.contact-info b{color:#fff}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.contact-links a{padding:12px 18px;border:1px solid var(--border);border-radius:10px;color:#fff;text-decoration:none;transition:.3s}
+.contact-links a:hover{color:var(--cyan);border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 0 20px rgba(0,234,255,.15)}
+.contact-links a.whatsapp{border-color:#25d366;color:#25d366}
+.contact-links a.whatsapp:hover{background:#25d366;color:#04140a;box-shadow:0 0 25px rgba(37,211,102,.45)}
+footer{text-align:center;padding:30px;background:#03050a;border-top:1px solid var(--border);color:#788399;font-size:13px}
+footer span{color:var(--cyan)}
+.top{position:fixed;right:25px;bottom:25px;width:45px;height:45px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:#fff;font-size:20px;display:none;z-index:999}
+.top.show{display:block}
+.wa-float{position:fixed;left:25px;bottom:25px;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;z-index:999;box-shadow:0 6px 20px rgba(37,211,102,.45);transition:.3s;text-decoration:none;font-size:28px}
+.wa-float:hover{transform:scale(1.12)}
+@media(max-width:850px){
+body{cursor:auto}
+.cursor-dot,.cursor-ring,.mouse-light{display:none}
+nav{padding:0 5%}
+.nav-links{display:none}
+.hero{flex-direction:column-reverse;text-align:center;padding-top:120px}
+.hero-description{margin:auto}
+.buttons{justify-content:center}
+.photo-box img{width:270px;height:350px}
+.photo-box::before,.photo-box::after{width:290px;height:360px}
+.skill-grid,.project-grid{grid-template-columns:1fr}
+section{padding:75px 6%}
+}
+@media(max-width:450px){
+.hero h1{font-size:38px}
+.hero h2{font-size:20px}
+.photo-box img{width:240px;height:310px}
+.photo-box::before,.photo-box::after{width:255px;height:320px}
+}
+</style>
+</head>
+<body>
+<div class="cursor-dot"></div><div class="cursor-ring"></div><div class="mouse-light"></div>
+ 
+<nav>
+<a href="#home" class="logo">&lt;/&gt; Sooraj</a>
+<div class="nav-links">
+<a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+</div>
+</nav>
+ 
+<section class="hero" id="home">
+<div class="hero-text">
+<div class="small">CSE STUDENT • DEVELOPER</div>
+<h1>Hi, I'm <span>Sooraj Deshwal</span></h1>
+<h2>I Build, Learn &amp; Create With Code 🚀</h2>
+<p class="hero-description">Computer Science Engineering student passionate about Web Development, JavaScript, React, DSA and building real-world technology projects.</p>
+<div class="buttons">
+<a href="#projects" class="btn primary">View Projects</a>
+<a href="#contact" class="btn secondary">Contact Me</a>
+</div>
+</div>
+<div class="photo-box"><img src="1000055656.png" alt="Sooraj Deshwal"></div>
+</section>
+ 
+<section id="about">
+<div class="section-title"><div class="small">ABOUT ME</div><h2>Who <span>Am I?</span></h2></div>
+<div class="about"><div class="about-card">
+<p>I'm Sooraj Deshwal, a B.Tech Computer Science Engineering student currently studying in 2nd Year, 3rd Semester.</p><br>
+<p>My main interests are Web Development, JavaScript, React, Java, C++, DSA and Software Development. I enjoy learning new technologies and converting ideas into practical projects.</p>
+</div></div>
+</section>
+ 
+<section class="skills-section" id="skills">
+<div class="section-title"><div class="small">MY TECHNOLOGY</div><h2>My <span>Skills</span></h2></div>
+<div class="skill-grid">
+<div class="skill"><div class="skill-icon">HTML</div><h3>HTML &amp; CSS</h3><p>Responsive websites, layouts, animations and modern UI.</p></div>
+<div class="skill"><div class="skill-icon">JS</div><h3>JavaScript</h3><p>ES6+, functions, objects, arrays, DOM and modern JavaScript.</p></div>
+<div class="skill"><div class="skill-icon">R</div><h3>React</h3><p>Components, JSX, Props, State, Events and React Router.</p></div>
+<div class="skill"><div class="skill-icon">C</div><h3>C / DSA</h3><p>Linked Lists, Stack, Queue, Sorting and Time Complexity.</p></div>
+<div class="skill"><div class="skill-icon">C++</div><h3>C++ / OOP</h3><p>Classes, inheritance, polymorphism, virtual functions and OOP.</p></div>
+<div class="skill"><div class="skill-icon">Java</div><h3>Java</h3><p>Programming fundamentals, arrays, recursion, sorting and OOP.</p></div>
+</div>
+</section>
+ 
+<section id="projects">
+<div class="section-title"><div class="small">MY WORK</div><h2>My <span>Projects</span></h2></div>
+<div class="project-grid">
+<div class="project"><div class="project-number">PROJECT 01</div><h3>Teacher Connect 👨‍🏫</h3><p>A platform concept where schools can discover private teachers, view their profiles and invite suitable teachers for an introduction or interview.</p><div class="tags"><span>React Native</span><span>JavaScript</span><span>App</span></div></div>
+<div class="project"><div class="project-number">PROJECT 02</div><h3>Beacon AIOS 🤖</h3><p>An AI and personal-development application concept designed around different areas of personal growth, skills and entrepreneurship.</p><div class="tags"><span>AI</span><span>Mobile</span><span>Product</span></div></div>
+<div class="project"><div class="project-number">PROJECT 03</div><h3>Fraud Detection AI 🔐</h3><p>A project concept focused on identifying suspicious transactions and helping users understand potentially fraudulent activity.</p><div class="tags"><span>AI</span><span>Security</span><span>Web</span></div></div>
+<div class="project"><div class="project-number">PROJECT 04</div><h3>Coding Projects 💻</h3><p>Various programming projects using Java, C++ and JavaScript including sorting, student systems, product filtering and practical programs.</p><div class="tags"><span>Java</span><span>C++</span><span>JavaScript</span></div></div>
+</div>
+</section>
+ 
+<section class="education-section" id="education">
+<div class="section-title"><div class="small">MY JOURNEY</div><h2>My <span>Education</span></h2></div>
+<div class="timeline">
+<div class="edu"><h3>B.Tech — Computer Science Engineering</h3><p>MITRC College, Alwar</p><p>2nd Year • 3rd Semester</p></div>
+<div class="edu"><h3>Web Development Training</h3><p>HTML • CSS • JavaScript • Full Stack JavaScript • React</p></div>
+<div class="edu"><h3>RSCIT</h3><p>Computer and Digital Skills Certification</p></div>
+</div>
+</section>
+ 
+<section id="contact">
+<div class="section-title"><div class="small">GET IN TOUCH</div><h2>Let's <span>Connect</span> 🤝</h2></div>
+<div class="contact">
+<p>Interested in collaboration, projects or technology? Feel free to connect with me.</p>
+<div class="contact-info">
+<div><b>Email:</b> soorajdeshwal992925@gmail.com</div>
+<div><b>Mobile:</b> +91 99292 55008</div>
+</div>
+<div class="contact-links">
+<a href="mailto:soorajdeshwal992925@gmail.com">📧 Email</a>
+<a href="tel:+919929255008">📞 Call</a>
+<a class="whatsapp" href="https://wa.me/919929255008?text=Hi%20Sooraj%2C%20I%20saw%20your%20portfolio." target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+<a href="https://www.linkedin.com/in/sooraj-deshwal-a0665a366" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+<a href="https://github.com/soorajdeshwal" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+</div>
+</div>
+</section>
+ 
+<footer>
+<p>© <span id="year"></span> Sooraj Deshwal</p>
+<p>Built with HTML • CSS • JavaScript ❤️</p>
+</footer>
+ 
+<a class="wa-float" href="https://wa.me/919929255008?text=Hi%20Sooraj%2C%20I%20saw%20your%20portfolio." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
+<button class="top" id="topBtn">↑</button>
+ 
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+const dot=document.querySelector(".cursor-dot"),ring=document.querySelector(".cursor-ring"),light=document.querySelector(".mouse-light");
+let mouseX=innerWidth/2,mouseY=innerHeight/2,ringX=mouseX,ringY=mouseY;
+addEventListener("mousemove",e=>{
+  mouseX=e.clientX;mouseY=e.clientY;
+  dot.style.left=light.style.left=mouseX+"px";
+  dot.style.top=light.style.top=mouseY+"px";
+  const card=e.target.closest(".skill,.project");
+  if(card){const r=card.getBoundingClientRect();card.style.setProperty("--x",(mouseX-r.left)+"px");card.style.setProperty("--y",(mouseY-r.top)+"px");}
+});
+(function animateRing(){ringX+=(mouseX-ringX)*.15;ringY+=(mouseY-ringY)*.15;ring.style.left=ringX+"px";ring.style.top=ringY+"px";requestAnimationFrame(animateRing);})();
+document.querySelectorAll("a,.btn,.skill,.project").forEach(el=>{
+  el.addEventListener("mouseenter",()=>{ring.style.width=ring.style.height="60px";ring.style.borderColor="#7c5cff";});
+  el.addEventListener("mouseleave",()=>{ring.style.width=ring.style.height="35px";ring.style.borderColor="#00eaff";});
+});
+document.querySelectorAll(".skill,.project").forEach(card=>{
+  card.addEventListener("mousemove",e=>{
+    const r=card.getBoundingClientRect();
+    const ry=((e.clientX-r.left)/r.width-.5)*12,rx=((e.clientY-r.top)/r.height-.5)*-12;
+    card.style.transform=`perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-8px)`;
+  });
+  card.addEventListener("mouseleave",()=>{card.style.transform="perspective(700px) rotateX(0) rotateY(0) translateY(0)";});
+});
+const photo=document.querySelector(".photo-box img");
+photo.addEventListener("mousemove",e=>{
+  const r=photo.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  photo.style.transform=`perspective(800px) rotateY(${x*8}deg) rotateX(${y*-8}deg) scale(1.03)`;
+});
+photo.addEventListener("mouseleave",()=>{photo.style.transform="perspective(800px) rotateY(0) rotateX(0) scale(1)";});
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.style.opacity="1";en.target.style.transform="translateY(0)";observer.unobserve(en.target);}});
+},{threshold:.15});
+document.querySelectorAll(".skill,.project,.edu,.about-card").forEach(el=>{
+  el.style.opacity="0";el.style.transform="translateY(35px)";el.style.transition=".7s";observer.observe(el);
+});
+const topBtn=document.getElementById("topBtn"),sections=document.querySelectorAll("section[id]"),navLinks=document.querySelectorAll(".nav-links a");
+addEventListener("scroll",()=>{
+  topBtn.classList.toggle("show",scrollY>500);
+  let current="";
+  sections.forEach(s=>{if(scrollY>=s.offsetTop-200)current=s.id;});
+  navLinks.forEach(l=>{l.style.color=l.getAttribute("href")==="#"+current?"#00eaff":"white";});
+});
+topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+</script>
+</body>
+</html>
